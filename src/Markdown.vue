@@ -41,7 +41,7 @@ function greet(name, age) \{
 \}
 
 greet(name, age);
-\`\`\`
+\`\`\` 
 
 该代码段定义了一个常量 \`name\` 和一个变量 \`age\`，并定义了一个名为 \`greet\` 的函数来打印出一个招呼字符串。在打招呼函数中使用了模板字符串，并且代码专业而简洁。所有变量和函数的命名都遵循了标准的命名规则，使代码易于阅读和理解。
 
@@ -96,5 +96,6 @@ p > code {
 
 pre:has(code) {
   padding: 5px 0px 5px 0px;
+  line-height: 1.3;
 }
 </style>
