@@ -12,6 +12,7 @@
     "highlight.js": "^11.7.0",
     "marked": "^4.2.12",
     "marked-katex-extension": "^1.0.2",
+    "sass": "^1.59.3",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
