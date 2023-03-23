@@ -1,12 +1,12 @@
 # Markdown Renderer
 
-**渲染Markdown至图片**
+### **渲染Markdown至图片**
 
-使用`serve`启动本网站
+1. 使用`serve`启动本网站
 
 > 或许可以直接用文件协议访问(`file://`)
 
-在C#或其他语言中使用`Playwright`或其他无头浏览器框架访问网站，用框架功能设置 JavaScript 变量`renderOptions`
+2. 在C#或其他语言中使用`Playwright`或其他无头浏览器框架访问网站，用框架功能设置 JavaScript 变量`renderOptions`
 
 ```js
 var renderOptions = {
@@ -14,7 +14,7 @@ var renderOptions = {
 } 
 ```
 
-支持亮色/暗色模式，创建页面时强制`ColorScheme`即可
+3. 支持亮色/暗色模式，创建页面时强制`ColorScheme`即可
 
 ```c#
 return await chrome.NewContextAsync(new BrowserNewContextOptions() {
@@ -27,7 +27,7 @@ return await chrome.NewContextAsync(new BrowserNewContextOptions() {
 });
 ```
 
-监听控制台输出`rendered`后再等待网络活动结束（加载图片），然后截图即可
+4. 监听控制台输出`rendered`后再等待网络活动结束（加载图片），然后截图即可
 
 ```c#
 public async Task<byte[]> MarkdownSnapshot(string md) { 
