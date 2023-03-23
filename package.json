@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "highlight.js": "^11.7.0",
-    "isomorphic-dompurify": "^1.2.0",
+    "insane": "^2.6.2",
     "marked": "^4.2.12",
     "marked-katex-extension": "^1.0.2",
     "sass": "^1.59.3",

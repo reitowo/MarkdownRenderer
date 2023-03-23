@@ -5,7 +5,7 @@ import markedKatex from "marked-katex-extension";
 import "katex/dist/katex.min.css";
 import hljs from "highlight.js";
 import { ref, computed, watch, nextTick } from "vue";
-import DOMPurify from 'isomorphic-dompurify';
+import insane from 'insane'
 
 // marked 配置
 marked.setOptions({
@@ -100,18 +100,23 @@ Markdown是一种轻量级的标记语言，它可以让人们使用易于阅读
 这是一个一级标题
 ## 这是二级标题
 换行可以直接回车
+
 这是一个无序列表：
 - 列表1
 - 列表2
 - 列表3
+
 这是一个有序列表：
 1. 列表1
 2. 列表2
 3. 列表3
+
 链接和图片示例：<br>
-这是一个[链接](https://www.baidu.com/)，这是一个图片：![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
+这是一个[链接](https://www.baidu.com/)，这是一个图片：![](https://www.baidu.com/img/flexible/logo/pc/peak-result.png)
+
 引用示例：<br>
 > 这是一段引用
+
 代码示例：<br>
 内部代码：\`print("Hello World")\`<br>
 代码块：
@@ -121,8 +126,13 @@ if num == 1:
     print("Yes")
 \`\`\`
 以上就是 Markdown 的基本语法，希望对您有所帮助。
-这是一段公式测试：$y=x_1+x_2+\\dots+x_n=\\sum_{i=1}^n{x_i}$
 
+| aaa | aaa |
+| --- | --- |
+| aaa | aaa |
+| --- | --- |
+
+这是一段公式测试：$y=x_1+x_2+\\dots+x_n=\\sum_{i=1}^n{x_i}$
 `);
 const ring = ref(false);
 
@@ -140,8 +150,32 @@ const interval = setInterval(() => {
   }
 }, 100);
 
+
 // 将 markdown 文本转换为 html
-const output = computed(() => DOMPurify.sanitize(marked.parse(input.value)));
+const insaneOptions = {
+  allowedAttributes: {
+    a: ['href', 'name', 'target', 'rel', 'title'],
+    img: ['src', 'alt', 'title'],
+    input: ['type', 'checked', 'disabled'],
+    code: ['class'],
+    span: ['class', 'style'],
+    th: ['align'],
+    tr: ['align']
+  },
+  allowedSchemes: ['http', 'https', 'mailto'],
+  allowedTags: [
+    'a', 'article', 'b', 'blockquote', 'br', 'caption', 'code', 'del', 'details', 'div',
+    'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'img', 'input', 'ins', 'kbd',
+    'label', 'li', 'main', 'ol', 'p', 'pre', 'section', 'span', 'strike', 'strong', 'sub',
+    'summary', 'sup', 'table', 'tbody', 'td', 'th', 'thead', 'tr', 'u', 'ul'
+  ],
+  transformText: null,
+};
+
+for (let i = 1; i <= 6; i++) {
+  insaneOptions.allowedAttributes[`h${i}`] = ['id'];
+}
+const output = computed(() =>  insane(marked.parse(input.value), insaneOptions));
 
 // 监听 input 的变化，每次变化后都会触发 nextTick
 watch(input, () => {
