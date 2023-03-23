@@ -157,18 +157,18 @@ greet(name, age);
 这是一段公式测试：$y=x_1+x_2+\\dots+x_n=\\sum_{i=1}^n{x_i}$
 
 `);
+const ring = ref(false);
 
 // 测试用
 // setTimeout(() => {
-//   input.value = renderOptions.markdown;
-// }, 3000)
-
-const ring = false;
+//   input.value = 'Test';
+//   ring = renderOptions.ring;
+// }, 3000) 
 
 const interval = setInterval(() => {
   if (typeof renderOptions !== "undefined") {
     input.value = renderOptions.markdown;
-    ring = renderOptions.ring;
+    ring.value = renderOptions.ring;
     clearInterval(interval);
   }
 }, 100);

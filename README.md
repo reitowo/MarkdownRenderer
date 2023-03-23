@@ -1,6 +1,6 @@
 # Markdown Renderer
 
-### **渲染Markdown至图片**
+### 渲染Markdown至图片
 
 1. 使用`serve`启动本网站
 
