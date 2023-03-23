@@ -219,18 +219,10 @@ pre > code {
   font-size: 13px;
 }
 
-blockquote {
-  border-radius: 5px;
-  border-left: thick solid var(--color-border-hover);
-  padding: 3px 5px 3px 5px !important;
-  margin: 5px 0px 5px 0px;
-  background-color: var(--color-background-mute);
-}
-
 p > code {
   font-family: "Consolas", "思源黑体", "Source Hans Sans";
-  padding: 2px 4px;
-  border-radius: 3px;
+  padding: 2px 5px;
+  border-radius: 5px;
   background-color: var(--color-background-mute);
   color: #d19a66;
 }
@@ -239,51 +231,59 @@ pre:has(code:is(.hljs)) {
   padding: 5px 0px 5px 0px;
   line-height: 1.3;
   margin: 3px 0;
-} 
+}
 
-/* 定义项目符号和间隙距离变量 */
+blockquote {
+  border-radius: 5px;
+  border-left: thick solid #a2a2a2;
+  padding: 3px 5px 3px 5px !important;
+  margin: 5px 0px 5px 0px;
+  background-color: var(--color-background-mute);
+}
+
+/* 列表 */
 :root {
-  --primary-level: "•";
-  --secondary-level: "◦";
-  --tertiary-level: "▪";
+  --list-primary-level: "•";
+  --list-secondary-level: "◦";
+  --list-tertiary-level: "▪";
   --list-item-spacing: 0.5em;  
-  --base-padding: 0.5em;
-  --nested-padding: 1.2em;
+  --list-base-padding: 0.5em;
+  --list-nested-padding: 1.2em;
 }
 
 ul ul, ol ul,
 ul ol, ol ol {
-  padding-left: var(--nested-padding); /* 嵌套列表左边距 */
+  padding-left: var(--list-nested-padding); /* 嵌套列表左边距 */
 }
 
 /* 无序列表容器样式 */
 ul {
   list-style-type: none; /* 移除默认列表样式 */
-  padding-left: var(--base-padding);
+  padding-left: var(--list-base-padding);
 } 
 
 /* 一级列表项伪元素样式 */
 ul li::before {
-  content: var(--primary-level);
+  content: var(--list-primary-level);
   padding-right: var(--list-item-spacing); /* 使用间隙距离变量 */
 }
 
 /* 二级列表项伪元素样式 */
 ul ul li::before {
-  content: var(--secondary-level);
+  content: var(--list-secondary-level);
   padding-right: var(--list-item-spacing); /* 使用间隙距离变量 */
 }
 
 /* 三级列表项伪元素样式 */
 ul ul ul li::before {
-  content: var(--tertiary-level);
+  content: var(--list-tertiary-level);
   padding-right: var(--list-item-spacing); /* 使用间隙距离变量 */
 } 
 
 /* 有序列表（ol）容器样式 */
 ol {
   list-style-type: none; /* 移除默认列表样式 */
-  padding-left: var(--base-padding);
+  padding-left: var(--list-base-padding);
   counter-reset: ordered-list; /* 设置计数器 */ 
 }
 
@@ -327,13 +327,14 @@ ol:has(input) {
 ol:has(input) > li > input {
   margin-right: 5px;
 }  */
- 
+
+/* 横线 */
 hr {
-  border: 1px solid var(--border-color); 
+  border: 1px solid #a2a2a2;
   margin: 5px 0;
 }
 
-/* 基本表格样式 */
+/* 表格 */
 table {
   border-collapse: separate;
   border-spacing: 0;
@@ -348,23 +349,23 @@ th, td {
 
 /* 配置浅色模式 */
 :root {
-  --border-color: #e2e2e2;
-  --header-bg-color: #f5f5f5;
-  --odd-row-bg-color: #f0f0f0;
-  --border-radius: 8px;
+  --table-border-color: #e2e2e2;
+  --table-header-bg-color: #f3f3f3;
+  --table-odd-row-bg-color: #e7e7e7;
+  --table-border-radius: 8px;
 }
 
 /* 配置深色模式 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --border-color: #696969;
-    --header-bg-color: #242424;
-    --odd-row-bg-color: #494949;
+    --table-border-color: #a2a2a2;
+    --table-header-bg-color: #242424;
+    --table-odd-row-bg-color: #494949;
   }
 }
 
 th, td {
-  border-right: 1px solid var(--border-color); 
+  border-right: 1px solid var(--table-border-color);
   border-bottom: none;
   border-top: none;
 }
@@ -375,41 +376,41 @@ th:last-child, td:last-child {
 
 /* 每行之间的横线 */
 table tbody tr:not(:last-child) td {
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--table-border-color);
 }
 
 /* 圆角矩形边框 */
 table {
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  border: 1px solid var(--table-border-color);
+  border-radius: var(--table-border-radius);
 }
 
 /* 表头样式 */
 table thead th {
-  background-color: var(--header-bg-color);
-  border-bottom: 2px solid var(--border-color);
+  background-color: var(--table-header-bg-color);
+  border-bottom: 2px solid var(--table-border-color);
 }
 
 /* 背景颜色交错 */
 table tbody tr:nth-child(odd) {
-  background-color: var(--odd-row-bg-color);
+  background-color: var(--table-odd-row-bg-color);
 }
 
 /* 表格圆角处理 */
 table tr:first-child th:first-child {
-  border-top-left-radius: var(--border-radius);
+  border-top-left-radius: var(--table-border-radius);
 }
 
 table tr:first-child th:last-child {
-  border-top-right-radius: var(--border-radius);
+  border-top-right-radius: var(--table-border-radius);
 }
 
 table tr:last-child td:first-child {
-  border-bottom-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--table-border-radius);
 }
 
 table tr:last-child td:last-child {
-  border-bottom-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--table-border-radius);
 }
 
 a {
