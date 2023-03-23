@@ -328,12 +328,6 @@ ol:has(input) > li > input {
   margin-right: 5px;
 }  */
 
-/* 横线 */
-hr {
-  border: 1px solid #a2a2a2;
-  margin: 5px 0;
-}
-
 /* 表格 */
 table {
   border-collapse: separate;
@@ -353,14 +347,16 @@ th, td {
   --table-header-bg-color: #f3f3f3;
   --table-odd-row-bg-color: #e7e7e7;
   --table-border-radius: 8px;
+  --href-color: #127dda;
 }
 
 /* 配置深色模式 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --table-border-color: #a2a2a2;
+    --table-border-color: rgb(84, 90, 94);
     --table-header-bg-color: #242424;
     --table-odd-row-bg-color: #494949;
+    --href-color: #45a9f9;
   }
 }
 
@@ -413,8 +409,15 @@ table tr:last-child td:last-child {
   border-bottom-right-radius: var(--table-border-radius);
 }
 
+/* 链接 */
 a {
-  color: #45a9f9;
+  color: var(--href-color);
   text-decoration: none;
-} 
+}
+
+/* 横线 */
+hr {
+  border: 1px solid var(--table-border-color);
+  margin: 5px 0;
+}
 </style>
