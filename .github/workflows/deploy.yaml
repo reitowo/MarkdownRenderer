@@ -15,6 +15,9 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  VUE_APP_BASE_ROUTE: /MarkdownRenderer/
+
 # Allow one concurrent deployment
 concurrency:
   group: 'pages'

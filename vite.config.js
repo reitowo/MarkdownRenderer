@@ -5,7 +5,8 @@ import Vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => { 
-  console.log('Building for', mode);
+  const BASE_ROUTE = process.env.VUE_APP_BASE_ROUTE || '/' 
+  console.log('Base Route', BASE_ROUTE);
   return { 
     plugins: [
       Vue() 
@@ -15,6 +16,6 @@ export default defineConfig(({ command, mode }) => {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
       },
     },
-    base: mode === "github-pages" ? '/MarkdownRenderer/' : '/'
+    base: BASE_ROUTE
   }
 });
