@@ -2,11 +2,11 @@
 
 ### 渲染Markdown至图片
 
-1. 使用`serve`本地启动网站，或使用：
+1. 使用 `serve` 本地启动网站，或使用：
 - https://cnschwarzer.github.io/MarkdownRenderer
-- http://md.reito.fun
+- https://md.reito.fun （请复用 Playwright Context 以对静态资源进行缓存，CDN 限频 IP 100QPS）
 
-2. 在C#或其他语言中使用`Playwright`或其他无头浏览器框架访问网站，用框架功能设置 JavaScript 变量`renderOptions`
+2. 在C#或其他语言中使用 [Playwright](https://playwright.dev/) 或其他无头浏览器框架访问网站，用框架功能设置 JavaScript 变量 `renderOptions`
 
 ```js
 var renderOptions = {
@@ -14,7 +14,7 @@ var renderOptions = {
 } 
 ```
 
-3. 支持亮色/暗色模式，创建页面时强制`ColorScheme`即可
+3. 支持亮色/暗色模式，创建页面时强制 `ColorScheme` 即可
 
 ```c#
 return await chrome.NewContextAsync(new BrowserNewContextOptions() {
@@ -27,7 +27,7 @@ return await chrome.NewContextAsync(new BrowserNewContextOptions() {
 });
 ```
 
-4. 监听控制台输出`rendered`后再等待网络活动结束（加载图片），然后截图即可
+4. 监听控制台输出 `rendered` 后再等待网络活动结束（加载图片），然后截图即可
 
 ```c#
 public async Task<byte[]> MarkdownSnapshot(string md) { 
