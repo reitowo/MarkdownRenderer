@@ -4,7 +4,7 @@
 
 1. 使用`serve`本地启动网站，或许可以直接用文件协议访问(`file://`)
 
-    也可以使用 GithubPages `https://cnschwarzer.github.io/MarkdownRenderer/` 或 国内镜像 `https://md.reito.fun`
+    也可以使用 GithubPages `https://cnschwarzer.github.io/MarkdownRenderer/` 或 国内CDN镜像 `http://md.reito.fun` (不是HTTPS)
 
 2. 在C#或其他语言中使用`Playwright`或其他无头浏览器框架访问网站，用框架功能设置 JavaScript 变量`renderOptions`
 
