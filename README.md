@@ -1,10 +1,12 @@
 # Markdown Renderer
 
-渲染Markdown至图片
+**渲染Markdown至图片**
 
-使用`serve`启动本网站（没试过`file://`，或许可以直接用文件协议访问）
+使用`serve`启动本网站
 
-在C#或其他语言中使用`Playwright`或其他无头浏览器框架访问本软件，用框架功能设置 JavaScript 变量`renderOptions`
+> 或许可以直接用文件协议访问(`file://`)
+
+在C#或其他语言中使用`Playwright`或其他无头浏览器框架访问网站，用框架功能设置 JavaScript 变量`renderOptions`
 
 ```js
 var renderOptions = {
