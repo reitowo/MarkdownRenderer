@@ -5,6 +5,7 @@ import markedKatex from "marked-katex-extension";
 import "katex/dist/katex.min.css";
 import hljs from "highlight.js";
 import { ref, computed, watch, nextTick } from "vue";
+import DOMPurify from 'isomorphic-dompurify';
 
 // marked 配置
 marked.setOptions({
@@ -31,7 +32,7 @@ marked.use(
 
 // 替换纯代码段无样式
 function indentCodeCompensation(raw, text) {
-  const matchIndentToCode = raw.match(/^(\s+)(?:```)/);
+  const matchIndentToCode = raw.match(/^(\s+)```/);
 
   if (matchIndentToCode === null) {
     return text;
@@ -67,7 +68,7 @@ const tokenizer = {
       var lang = cap[2]
         ? cap[2].trim().replace(this.rules.inline._escapes, "$1")
         : cap[2];
-      if (lang.length == 0) {
+      if (lang.length === 0) {
         lang = "plaintext";
       }
 
@@ -85,75 +86,41 @@ marked.use({ tokenizer });
 
 // 默认初始值
 const input = ref(`
-> 亚甲基蓝
-
-以下是一段使用JavaScript语言编写的漂亮代码示例：
-
-\`\`\`javascript
-const name = "ChatGPT";
-let age = 3;
-
-function greet(name, age) \{
-  console.log(\`Hello! My name is \${name} and I am \${age} years old.\`);
-\}
-
-greet(name, age);
-\`\`\` 
-
-[链接](https://reito.fun)
-https://reito.fun
-
-\`\`\` 
-greet(name, age);
-greet(name, age);
-greet(name, age);
+Markdown是一种轻量级的标记语言，它可以让人们使用易于阅读和编写的纯文本格式，将内容转换成为HTML格式的文档。
+下面是一些基本的 Markdown 语法：
+1. 标题格式：在行首用一个或多个 # 加上空格，表示一级至六级标题。例如： # 一级标题，## 二级标题
+2. 强调：使用 * 或 _ 包裹需要强调的文本，表示斜体，使用两个 * 或 _ 包裹文本，表示加粗。
+3. 列表：使用 - 或 + 或 * 符号加空格表示无序列表，使用数字加句点加空格表示有序列表。
+4. 链接：使用 [链接名称](链接地址) 的格式表示链接。
+5. 图片：使用 ![](图片地址) 的格式表示图片。
+6. 引用：在引用文本前加上 > 符号表示引用。
+7. 代码：使用 \`代码内容\` 表示内部代码，使用 \`\`\`代码\`\`\` 表示代码块。
+这是一个 Markdown 的例子：
+# Markdown例子
+这是一个一级标题
+## 这是二级标题
+换行可以直接回车
+这是一个无序列表：
+- 列表1
+- 列表2
+- 列表3
+这是一个有序列表：
+1. 列表1
+2. 列表2
+3. 列表3
+链接和图片示例：<br>
+这是一个[链接](https://www.baidu.com/)，这是一个图片：![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
+引用示例：<br>
+> 这是一段引用
+代码示例：<br>
+内部代码：\`print("Hello World")\`<br>
+代码块：
 \`\`\`
-
-| 表格 | 测试 | aaaaaaaaaaaaa |
-| --- | --- | --- |
-| 啊啊啊 | 啊啊啊 | aaa |
-| 111 | 123123 | aaa |
-| 111 | 123123 | aaa |
-| 111 | 123123 | aaa |
-
---------
-
-任务列表:
-
-- [ ] 未完成任务
-- [x] 已完成任务
-  - [ ] Test
-
-换行:
-这是一行文本
-这是另一行文本 
-
----------------
-
-
-![image](https://guild-1304010062.cos.ap-nanjing.myqcloud.com/reito/thank_foot.png)
-
-- 111
-- 222
-- 333
-  - 11
-  - 22
-    - 111
-    - 111
-      - 111
-      - 111
-
-1. 有序列表项 1
-2. 有序列表项 2
-   1. 子项 2.1
-   2. 子项 2.2
-      1. 子项 2.1
-      2. 子项 2.2
-
-该代码段定义了一个常量 \`name\` 和一个变量 \`age\`，并定义了一个名为 \`greet\` \`print("大家好！")\` 的函数来打印出一个招呼字符串。在打招呼函数中使用了模板字符串，并且代码专业而简洁。所有变量和函数的命名都遵循了标准的命名规则，使代码易于阅读和理解。
-
-代码的美感不仅在于外观，更重要的是代码可读性和可维护性。这样的一个漂亮的代码示例可以带给开发者在视觉上的愉悦，但也能够通过简单清晰的代码表达意图，让其他人或自己在未来再次查看时更加容易理解。
-
+num = 1
+if num == 1:
+    print("Yes")
+\`\`\`
+以上就是 Markdown 的基本语法，希望对您有所帮助。
 这是一段公式测试：$y=x_1+x_2+\\dots+x_n=\\sum_{i=1}^n{x_i}$
 
 `);
@@ -174,7 +141,7 @@ const interval = setInterval(() => {
 }, 100);
 
 // 将 markdown 文本转换为 html
-const output = computed(() => marked.parse(input.value));
+const output = computed(() => DOMPurify.sanitize(marked.parse(input.value)));
 
 // 监听 input 的变化，每次变化后都会触发 nextTick
 watch(input, () => {
@@ -186,14 +153,14 @@ watch(input, () => {
 
 <template>
   <div>
-    <div v-if="ring" style='height: 20px; display: flex; align-items: center; margin-bottom: 8px; margin-top: 5px; font-size: 19px; font-family: "Consolas"'>
+    <div v-if="ring" style='height: 20px; display: flex; align-items: center; margin-bottom: 8px; margin-top: 5px; font-size: 19px; font-family: "Consolas", serif'>
       <svg
         width="20"
         height="20"
         viewBox="0 0 41 41"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        strokewidth="2"
+        stroke-width="2"
         class="scale-appear"
         style='margin-right: 5px;'
       >
@@ -212,7 +179,7 @@ watch(input, () => {
 
 <style>
 pre > code {
-  font-family: "Consolas", "思源黑体";
+  font-family: "Consolas", "思源黑体", serif;
   padding: 0.6em 1em 0.6em 1em !important;
   border-radius: 10px;
   white-space: pre-wrap !important;
@@ -220,15 +187,15 @@ pre > code {
 }
 
 p > code {
-  font-family: "Consolas", "思源黑体", "Source Hans Sans";
+  font-family: "Consolas", "思源黑体", "Source Hans Sans", serif;
   padding: 2px 5px;
   border-radius: 5px;
   background-color: var(--color-background-mute);
   color: #d19a66;
 }
 
-pre:has(code:is(.hljs)) {
-  padding: 5px 0px 5px 0px;
+pre:has(code) {
+  padding: 5px 0 5px 0;
   line-height: 1.3;
   margin: 3px 0;
 }
@@ -237,7 +204,7 @@ blockquote {
   border-radius: 5px;
   border-left: thick solid #a2a2a2;
   padding: 3px 5px 3px 5px !important;
-  margin: 5px 0px 5px 0px;
+  margin: 5px 0 5px 0;
   background-color: var(--color-background-mute);
 }
 
@@ -294,7 +261,7 @@ ol li {
 
 /* 一级列表项伪元素样式 */
 ol li::before {
-  content: counter(ordered-list) ". "; /* 使用计数器并添加点号 */
+  content: counter(ordered-list) "."; /* 使用计数器并添加点号 */
   padding-right: var(--list-item-spacing); /* 使用间隙距离变量 */
 }
 

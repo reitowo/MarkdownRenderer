@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 11334",
-    "build": "vite build", 
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "highlight.js": "^11.7.0",
+    "isomorphic-dompurify": "^1.2.0",
     "marked": "^4.2.12",
     "marked-katex-extension": "^1.0.2",
     "sass": "^1.59.3",
