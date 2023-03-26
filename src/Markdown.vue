@@ -105,10 +105,31 @@ Markdown是一种轻量级的标记语言，它可以让人们使用易于阅读
 - 列表1
 - 列表2
 - 列表3
+    - a
+    - b
+    - c
+        - a
+        - b
+        - c
+            - a
+            - b
+            - c
 
 这是一个有序列表：
 1. 列表1
+    - a
+    - b
+    - c
 2. 列表2
+    1. a
+    2. b
+    3. c
+        1. a
+        2. b
+        3. c
+            1. a
+            2. b
+            3. c
 3. 列表3
 
 链接和图片示例：<br>
@@ -133,6 +154,19 @@ if num == 1:
 | --- | --- |
 
 这是一段公式测试：$y=x_1+x_2+\\dots+x_n=\\sum_{i=1}^n{x_i}$
+
+Rust 并不是一门失败的语言。虽然它被开发出来并不久，但它已经得到了广泛的关注和使用。相反的，Rust 的优点也越来越受到开发者的关注。以下是一些 Rust 的优点：
+
+1. 内存安全性：Rust 通过强制、静态的内存安全检查来保证程序的内存安全，在很大程度上避免了一些常见的内存安全问题，如空指针引用、越界访问等。
+
+2. 性能：Rust 的设计中考虑了性能的问题，可以生成高性能的本地代码。
+
+3. 并发性：Rust 中的所有变量都是默认不可变的，除非使用mut显式声明，这也可以支持并发编程的实现，并避免数据竞争的发生。
+
+4. 可扩展性：Rust 的宏系统和 trait 实现机制使其具有可扩展性，可方便地支持常规的领域特定语言扩展。
+
+尽管Rust并不是一门无缺点的语言，仍然被很多人看好，而它还有很大的发展空间，我们期待着它在以后的时刻表现得更加出色。
+
 `);
 const ring = ref(false);
 
@@ -247,9 +281,10 @@ blockquote {
   --list-primary-level: "•";
   --list-secondary-level: "◦";
   --list-tertiary-level: "▪";
-  --list-item-spacing: 0.5em;  
-  --list-base-padding: 0.5em;
-  --list-nested-padding: 1.2em;
+  --list-item-spacing: 1em;
+  --list-ul-base-padding: 1.1em;
+  --list-ol-base-padding: 1.2em;
+  --list-nested-padding: 1em;
 }
 
 ul ul, ol ul,
@@ -259,55 +294,67 @@ ul ol, ol ol {
 
 /* 无序列表容器样式 */
 ul {
-  list-style-type: none; /* 移除默认列表样式 */
-  padding-left: var(--list-base-padding);
-} 
+  padding-left: var(--list-ul-base-padding);
+}
+
+/* 有序列表（ol）容器样式 */
+ul ul {
+  list-style-type: circle;
+}
+
+ul ul ul {
+  list-style-type: square;
+}
+
+ul ul ul ul {
+  list-style-type: disclosure-closed
+}
 
 /* 一级列表项伪元素样式 */
 ul li::before {
-  content: var(--list-primary-level);
   padding-right: var(--list-item-spacing); /* 使用间隙距离变量 */
 }
 
 /* 二级列表项伪元素样式 */
 ul ul li::before {
-  content: var(--list-secondary-level);
   padding-right: var(--list-item-spacing); /* 使用间隙距离变量 */
 }
 
 /* 三级列表项伪元素样式 */
 ul ul ul li::before {
-  content: var(--list-tertiary-level);
   padding-right: var(--list-item-spacing); /* 使用间隙距离变量 */
 } 
 
 /* 有序列表（ol）容器样式 */
 ol {
-  list-style-type: none; /* 移除默认列表样式 */
-  padding-left: var(--list-base-padding);
-  counter-reset: ordered-list; /* 设置计数器 */ 
+  padding-left: var(--list-ol-base-padding);
 }
 
-/* 有序列表（ol）列表项伪元素样式 */
-ol li {
-  counter-increment: ordered-list; /* 递增计数器 */
+/* 有序列表（ol）容器样式 */
+ol ol {
+  list-style-type: lower-alpha; /* 移除默认列表样式 */
+}
+
+ol ol ol {
+  list-style-type: lower-roman; /* 移除默认列表样式 */
+}
+
+ol ol ol ol {
+  list-style-type: lower-greek; /* 移除默认列表样式 */
 }
 
 /* 一级列表项伪元素样式 */
 ol li::before {
-  content: counter(ordered-list) "."; /* 使用计数器并添加点号 */
   padding-right: var(--list-item-spacing); /* 使用间隙距离变量 */
 }
 
 /* 二级列表项伪元素样式 */
 ol ol li::before {
-  content: counter(ordered-list, lower-alpha) ". "; /* 使用小写字母并添加。“作为计数器 */
   padding-right: var(--list-item-spacing); /* 使用间隙距离变量 */
 }
 
 /* 三级列表项伪元素样式 */
 ol ol ol li::before {
-  content: counter(ordered-list, lower-roman) ". "; /* 使用小写罗马数字并添加点号作为 */
   padding-right: var(--list-item-spacing); /* 使用间隙距离变量 */
 } 
 
