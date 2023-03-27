@@ -52,10 +52,10 @@ public async Task<byte[]> MarkdownSnapshot(string md) {
             "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36"
          }
       });
-      await page.GotoAsync($"http://localhost:11225", new PageGotoOptions() {
+      await page.GotoAsync($"https://md.reito.fun", new PageGotoOptions() {
          Timeout = 5000
       }).ConfigureAwait(false);
-      await page.EvaluateAsync("(content) => { csharp = { markdown: content } }", md);
+      await page.EvaluateAsync("(content) => { renderOptions = { markdown: content } }", md);
       await page.WaitForConsoleMessageAsync(new PageWaitForConsoleMessageOptions() {
          Predicate = a => a.Text.Contains("rendered"),
          Timeout = 5000
