@@ -4,21 +4,21 @@
 
 1. 使用 `serve` 本地启动网站，或使用：
 - https://cnschwarzer.github.io/MarkdownRenderer
-- https://md.reito.fun （请复用 Playwright Context 以对静态资源进行缓存，CDN 限频 IP 100QPS）
+- https://md.reito.fun
 
 2. 在C#或其他语言中使用 [Playwright](https://playwright.dev/) 或其他无头浏览器框架访问网站，用框架功能设置 JavaScript 变量 `renderOptions`
 
 ```js
 var renderOptions = {
-    markdown: '' // Markdown 内容
+    markdown: '', // Markdown 内容
+    theme: 'dark' // 亮色/暗色模式
 } 
 ```
 
-3. 支持亮色/暗色模式，创建页面时强制 `ColorScheme` 即可
+3. 创建上下文（请复用上下文以对静态资源进行缓存）
 
 ```c#
-return await chrome.NewContextAsync(new BrowserNewContextOptions() {
-   ColorScheme = ColorScheme.Dark,
+return await chrome.NewContextAsync(new BrowserNewContextOptions() { 
    DeviceScaleFactor = 2,
    ViewportSize = new ViewportSize {
       Width = 500,
