@@ -268,8 +268,8 @@ blockquote {
   --list-secondary-level: "◦";
   --list-tertiary-level: "▪";
   --list-item-spacing: 1em;
-  --list-ul-base-padding: 1.3em;
-  --list-ol-base-padding: 1.4em;
+  --list-ul-base-padding: 1.1em;
+  --list-ol-base-padding: 1.2em;
   --list-nested-padding: 1em;
 }
 

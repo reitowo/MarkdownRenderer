@@ -29,6 +29,10 @@ return await chrome.NewContextAsync(new BrowserNewContextOptions() {
 
 4. 监听控制台输出 `rendered` 后再等待网络活动结束（加载图片），然后截图即可
 
+### 示例
+
+在Linux上使用Playwright推荐使用Firefox进行渲染，注意需要安装字体`Consolas`与`思源黑体`
+
 ```c#
 public async Task<byte[]> MarkdownSnapshot(string md) { 
    IPage page = null;
