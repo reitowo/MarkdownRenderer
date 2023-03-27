@@ -86,86 +86,61 @@ marked.use({ tokenizer });
 
 // 默认初始值
 const input = ref(`
-Markdown是一种轻量级的标记语言，它可以让人们使用易于阅读和编写的纯文本格式，将内容转换成为HTML格式的文档。
-下面是一些基本的 Markdown 语法：
-1. 标题格式：在行首用一个或多个 # 加上空格，表示一级至六级标题。例如： # 一级标题，## 二级标题
-2. 强调：使用 * 或 _ 包裹需要强调的文本，表示斜体，使用两个 * 或 _ 包裹文本，表示加粗。
-3. 列表：使用 - 或 + 或 * 符号加空格表示无序列表，使用数字加句点加空格表示有序列表。
-4. 链接：使用 [链接名称](链接地址) 的格式表示链接。
-5. 图片：使用 ![]() 的格式表示图片。
-6. 引用：在引用文本前加上 > 符号表示引用。
-7. 代码：使用 \`代码内容\` 表示内部代码，使用 \`\`\`代码\`\`\` 表示代码块。
-这是一个 Markdown 的例子：
-# Markdown例子
-这是一个一级标题
+# Markdown Renderer
+[https://github.com/cnSchwarzer/MarkdownRenderer](https://github.com/cnSchwarzer/MarkdownRenderer)
+
+这是分割线
+
+----------------------
+
 ## 这是二级标题
-换行可以直接回车
+### 这是三级标题
+#### 这是四级标题
+##### 这是五级标题
+###### 这是六级标题
+
+**粗体文本**
+
+*斜体文本*
+
+~~删除线文本~~
 
 这是一个无序列表：
 - 列表1
-- 列表2
-- 列表3
     - a
-    - b
-    - c
         - a
-        - b
-        - c
             - a
-            - b
-            - c
 
 这是一个有序列表：
-1. 列表1
-    - a
-    - b
-    - c
-2. 列表2
+1. 列表2
     1. a
-    2. b
-    3. c
         1. a
-        2. b
-        3. c
             1. a
-            2. b
-            3. c
-3. 列表3
 
-链接和图片示例：<br>
-这是一个[链接](https://www.baidu.com/)，这是一个图片：![](https://www.baidu.com/img/flexible/logo/pc/peak-result.png)
+这是一个[链接](https://www.baidu.com/)
 
-引用示例：<br>
+这是一个图片：![](https://guild-1304010062.cos.ap-nanjing.myqcloud.com/reito/ending.png)
+
 > 这是一段引用
+>  > 嵌套引用
 
-代码示例：<br>
-内部代码：\`print("Hello World")\`<br>
+内联代码：\`print("Hello World")\`
+
 代码块：
 \`\`\`python
 num = 1
 if num == 1:
     print("Yes")
 \`\`\`
-以上就是 Markdown 的基本语法，希望对您有所帮助。
+
+这是表格
 
 | aaa | aaa |
 | --- | --- |
 | aaa | aaa |
 | --- | --- |
 
-这是一段公式测试：$y=x_1+x_2+\\dots+x_n=\\sum_{i=1}^n{x_i}$
-
-Rust 并不是一门失败的语言。虽然它被开发出来并不久，但它已经得到了广泛的关注和使用。相反的，Rust 的优点也越来越受到开发者的关注。以下是一些 Rust 的优点：
-
-1. 内存安全性：Rust 通过强制、静态的内存安全检查来保证程序的内存安全，在很大程度上避免了一些常见的内存安全问题，如空指针引用、越界访问等。
-
-2. 性能：Rust 的设计中考虑了性能的问题，可以生成高性能的本地代码。
-
-3. 并发性：Rust 中的所有变量都是默认不可变的，除非使用mut显式声明，这也可以支持并发编程的实现，并避免数据竞争的发生。
-
-4. 可扩展性：Rust 的宏系统和 trait 实现机制使其具有可扩展性，可方便地支持常规的领域特定语言扩展。
-
-尽管Rust并不是一门无缺点的语言，仍然被很多人看好，而它还有很大的发展空间，我们期待着它在以后的时刻表现得更加出色。
+这是一段公式：$y=x_1+x_2+\\dots+x_n=\\sum_{i=1}^n{x_i}$
 
 `);
 const ring = ref(false);
@@ -246,6 +221,16 @@ watch(input, () => {
 </template>
 
 <style>
+:root {
+  --blockquote-color: #e8e8e880;
+}
+
+/* 配置深色模式 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --blockquote-color: #28282880;
+  }
+}
 pre > code {
   font-family: "Consolas", "思源黑体", serif;
   padding: 0.6em 1em 0.6em 1em !important;
@@ -254,11 +239,12 @@ pre > code {
   font-size: 13px;
 }
 
-p > code {
+:not(pre) > code {
   font-family: "Consolas", "思源黑体", "Source Hans Sans", serif;
   padding: 2px 5px;
   border-radius: 5px;
   background-color: var(--color-background-mute);
+  background-position: center;
   color: #d19a66;
 }
 
@@ -273,7 +259,7 @@ blockquote {
   border-left: thick solid #a2a2a2;
   padding: 3px 5px 3px 5px !important;
   margin: 5px 0 5px 0;
-  background-color: var(--color-background-mute);
+  background-color: var(--blockquote-color);
 }
 
 /* 列表 */
@@ -282,9 +268,15 @@ blockquote {
   --list-secondary-level: "◦";
   --list-tertiary-level: "▪";
   --list-item-spacing: 1em;
-  --list-ul-base-padding: 1.1em;
-  --list-ol-base-padding: 1.2em;
+  --list-ul-base-padding: 1.3em;
+  --list-ol-base-padding: 1.4em;
   --list-nested-padding: 1em;
+}
+
+img {
+  margin: 5px 0 5px 0;
+  max-width: 100%;
+  border-radius: 5px;
 }
 
 ul ul, ol ul,
@@ -380,8 +372,8 @@ ol:has(input) > li > input {
 table {
   border-collapse: separate;
   border-spacing: 0;
-  width: auto;
-  margin: 10px 0;
+  width: 100%; /* auto 可以自适应内容 */
+  margin: 5px 0;
 }
 
 th, td {
@@ -402,8 +394,8 @@ th, td {
 @media (prefers-color-scheme: dark) {
   :root {
     --table-border-color: rgb(84, 90, 94);
-    --table-header-bg-color: #242424;
-    --table-odd-row-bg-color: #494949;
+    --table-header-bg-color: #313131;
+    --table-odd-row-bg-color: #444444;
     --href-color: #45a9f9;
   }
 }
@@ -433,6 +425,7 @@ table {
 table thead th {
   background-color: var(--table-header-bg-color);
   border-bottom: 2px solid var(--table-border-color);
+  text-align: center;
 }
 
 /* 背景颜色交错 */
