@@ -55,11 +55,14 @@ public async Task<byte[]> MarkdownSnapshot(string md) {
       await page.GotoAsync($"https://md.reito.fun", new PageGotoOptions() {
          Timeout = 5000
       }).ConfigureAwait(false);
-      await page.EvaluateAsync("(content) => { renderOptions = { markdown: content } }", md);
-      await page.WaitForConsoleMessageAsync(new PageWaitForConsoleMessageOptions() {
-         Predicate = a => a.Text.Contains("rendered"),
-         Timeout = 5000
-      });
+      await page.EvaluateAsync($$"""
+(content) => {
+   window.renderMarkdown({ 
+      markdown: content,
+      theme: '{{(DateTimeOffset.Now.LocalDateTime.Hour is >= 21 or <= 7 ? "dark" : "light")}}'
+   })
+}
+""", md);
       try {
          await page.WaitForLoadStateAsync(LoadState.NetworkIdle, new PageWaitForLoadStateOptions() {
             Timeout = 5000

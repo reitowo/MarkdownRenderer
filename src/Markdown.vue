@@ -162,23 +162,6 @@ if num == 1:
 `);
 const ring = ref(false);
 
-// 测试用
-// setTimeout(() => {
-//   input.value = 'Test';
-//   ring = renderOptions.ring;
-// }, 3000)
-
-const interval = setInterval(() => {
-  if (typeof renderOptions !== "undefined") {
-    input.value = renderOptions.markdown;
-    ring.value = renderOptions.ring;
-    if (renderOptions.theme === "dark") {
-      document.documentElement.setAttribute("data-theme", "dark");
-    }
-    clearInterval(interval);
-  }
-}, 100);
-
 // 将 markdown 文本转换为 html
 const insaneOptions = {
   allowedAttributes: {
@@ -205,12 +188,13 @@ for (let i = 1; i <= 6; i++) {
 }
 const output = computed(() => insane(marked.parse(input.value), insaneOptions));
 
-// 监听 input 的变化，每次变化后都会触发 nextTick
-watch(input, () => {
-  nextTick(() => {
-    console.log("rendered");
-  });
-});
+window.renderMarkdown = (renderOptions) => {
+    input.value = renderOptions.markdown;
+    ring.value = renderOptions.ring;
+    if (renderOptions.theme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } 
+}
 </script>
 
 <template>
