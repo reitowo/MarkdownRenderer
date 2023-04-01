@@ -134,7 +134,9 @@ const input = ref(`
 
 这是一个[链接](https://www.baidu.com/)
 
-这是一个图片：![](https://guild-1304010062.cos.ap-nanjing.myqcloud.com/reito/ending.png)
+这是一个图片：
+
+![](https://guild-1304010062.cos.ap-nanjing.myqcloud.com/reito/ending.png)
 
 > 这是一段引用
 >  > 嵌套引用
