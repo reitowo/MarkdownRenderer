@@ -164,7 +164,7 @@ const ring = ref(false);
 // setTimeout(() => {
 //   input.value = 'Test';
 //   ring = renderOptions.ring;
-// }, 3000) 
+// }, 3000)
 
 const interval = setInterval(() => {
   if (typeof renderOptions !== "undefined") {
@@ -409,6 +409,7 @@ th, td {
   border-right: 1px solid var(--table-border-color);
   border-bottom: none;
   border-top: none;
+  text-align: center;
 }
 
 th:last-child, td:last-child {
@@ -430,7 +431,7 @@ table {
 table thead th {
   background-color: var(--table-header-bg-color);
   border-bottom: 2px solid var(--table-border-color);
-  text-align: center;
+  font-weight: 600;
 }
 
 /* 背景颜色交错 */
@@ -465,5 +466,13 @@ a {
 hr {
   border: 1px solid var(--table-border-color);
   margin: 5px 0;
+}
+
+* {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
 }
 </style>
