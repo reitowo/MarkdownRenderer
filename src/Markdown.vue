@@ -193,7 +193,9 @@ window.renderMarkdown = (renderOptions) => {
     ring.value = renderOptions.ring;
     if (renderOptions.theme === "dark") {
       document.documentElement.setAttribute("data-theme", "dark");
-    } 
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
 }
 </script>
 
