@@ -12,7 +12,7 @@ app.use(
   createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
-      { path: "/", component: Markdown }, 
+      { path: "/", component: Markdown },
     ],
   })
 );

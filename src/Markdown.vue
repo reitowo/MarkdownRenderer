@@ -1,3 +1,4 @@
+<!--suppress CssNoGenericFontName -->
 <script setup>
 import {marked} from "marked";
 import markedKatex from "marked-katex-extension";
@@ -20,6 +21,7 @@ function detectColorScheme() {
     document.documentElement.setAttribute("data-theme", "dark");
   }
 }
+
 detectColorScheme();
 
 // marked 配置
@@ -159,6 +161,14 @@ if num == 1:
 
 这是一段公式：$y=x_1+x_2+\\dots+x_n=\\sum_{i=1}^n{x_i}$
 
+这是一段麻将：
+
+- 东3局 0本场
+
+<span class="mahjong">
+    <span class="mj-red">🀋</span>🀀🀁🀂🀃🀄🀅🀆🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀫
+</span>
+
 `);
 const ring = ref(false);
 
@@ -189,13 +199,13 @@ for (let i = 1; i <= 6; i++) {
 const output = computed(() => insane(marked.parse(input.value), insaneOptions));
 
 window.renderMarkdown = (renderOptions) => {
-    input.value = renderOptions.markdown;
-    ring.value = renderOptions.ring;
-    if (renderOptions.theme === "dark") {
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.removeAttribute("data-theme");
-    }
+  input.value = renderOptions.markdown;
+  ring.value = renderOptions.ring;
+  if (renderOptions.theme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+  }
 }
 </script>
 
@@ -463,4 +473,29 @@ hr {
   -ms-transition: none !important;
   transition: none !important;
 }
+
+@font-face {
+  font-family: 'S.Mahjong'; /*a name to be used later*/
+  src: url('assets/S-Mahjong.ttf'); /*URL to font*/
+}
+
+.mahjong {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  font-family: "S.Mahjong";
+  color: black;
+  line-height: 30px;
+  font-size: 30px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  padding-bottom: 7px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.mj-red {
+  filter: invert(50%) sepia(100%) hue-rotate(-49deg) saturate(550%);
+}
+
 </style>
