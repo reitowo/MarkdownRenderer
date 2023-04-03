@@ -479,15 +479,20 @@ hr {
   src: url('assets/S-Mahjong.ttf'); /*URL to font*/
 }
 
+.v-mid {
+  display: flex;
+  align-items: center;
+}
+
 .mahjong {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  font-family: "S.Mahjong";
+  font-family: "S.Mahjong", "Consolas", "思源黑体", serif;
   color: black;
   line-height: 30px;
   font-size: 30px;
-  background-color: #e0e0e0;
+  background-color: #f4f4f4;
   border-radius: 5px;
   padding-bottom: 7px;
   padding-left: 6px;
