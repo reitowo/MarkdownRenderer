@@ -212,6 +212,7 @@ const insaneOptions = {
     input: ['type', 'checked', 'disabled'],
     code: ['class'],
     span: ['class', 'style'],
+    div: ['class', 'style'],
     th: ['align'],
     tr: ['align']
   },
@@ -431,7 +432,7 @@ table {
 }
 
 th, td {
-  text-align: left;
+  text-align: center;
   padding: 5px;
 }
 
@@ -439,7 +440,6 @@ th, td {
   border-right: 1px solid var(--table-border-color);
   border-bottom: none;
   border-top: none;
-  text-align: center;
 }
 
 th:last-child, td:last-child {
@@ -471,19 +471,19 @@ table tbody tr:nth-child(odd) {
 
 /* 表格圆角处理 */
 table tr:first-child th:first-child {
-  border-top-left-radius: var(--table-border-radius);
+  border-top-left-radius: calc(var(--table-border-radius) - 1px);
 }
 
 table tr:first-child th:last-child {
-  border-top-right-radius: var(--table-border-radius);
+  border-top-right-radius: calc(var(--table-border-radius) - 1px);
 }
 
 table tr:last-child td:first-child {
-  border-bottom-left-radius: var(--table-border-radius);
+  border-bottom-left-radius: calc(var(--table-border-radius) - 1px);
 }
 
 table tr:last-child td:last-child {
-  border-bottom-right-radius: var(--table-border-radius);
+  border-bottom-right-radius: calc(var(--table-border-radius) - 1px);
 }
 
 /* 链接 */
@@ -538,6 +538,16 @@ hr {
 
 .mj-red {
   filter: invert(50%) sepia(100%) hue-rotate(-49deg) saturate(550%);
+}
+
+.table-sm th, .table-sm td {
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.table-sm table thead th {
+  border-bottom: 1px solid var(--table-border-color);
 }
 
 </style>
