@@ -166,7 +166,9 @@ if num == 1:
 - 东3局 0本场
 
 <span class="mahjong">
-    <span class="mj-red">🀋</span>🀀🀁🀂🀃🀄🀅🀆🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀫
+    <span class="mj">
+        <span class="mj-red">🀋</span>🀀🀁🀂🀃🀄🀅🀆🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀫
+    </span>
 </span>
 
 `);
@@ -490,13 +492,17 @@ hr {
   align-items: flex-end;
   font-family: "S.Mahjong", "Consolas", "思源黑体", serif;
   color: black;
-  line-height: 30px;
-  font-size: 30px;
+  line-height: 23px;
+  font-size: 24px;
   background-color: #f4f4f4;
-  border-radius: 5px;
-  padding-bottom: 7px;
-  padding-left: 6px;
-  padding-right: 6px;
+  border-radius: 2px;
+  padding-left: 1px;
+  padding-right: 1.5px;
+}
+
+.mj {
+  position: relative;
+  top: -2.5px;
 }
 
 .mj-red {
