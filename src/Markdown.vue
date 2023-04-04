@@ -397,7 +397,7 @@ ul:has(input) > li > input {
 } 
 
 ol:has(input) {
-  list-style-type: none; 
+  list-style-type: none;
   padding-inline-start: 5px;
 }
 
@@ -514,6 +514,7 @@ hr {
 }
 
 .mj {
+  display: inline-flex;
   position: relative;
   top: -2.5px;
 }
