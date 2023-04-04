@@ -533,7 +533,7 @@ hr {
 .mj {
   display: inline-flex;
   position: relative;
-  top: -2.5px;
+  top: -2px;
 }
 
 .mj-red {
