@@ -171,6 +171,14 @@ if num == 1:
     </span>
 </span>
 
+- 东3局 1本场
+
+<span class="mahjong">
+    <span class="mj">
+        <span class="mj-red">🀋</span>🀀🀁🀂🀃🀄🀅🀆🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀫
+    </span>
+</span>
+
 `);
 const ring = ref(false);
 
@@ -497,7 +505,7 @@ hr {
   background-color: #f4f4f4;
   border-radius: 2px;
   padding-left: 1px;
-  padding-right: 1.5px;
+  padding-right: 2px;
 }
 
 .mj {
