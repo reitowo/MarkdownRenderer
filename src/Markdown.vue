@@ -173,10 +173,15 @@ if num == 1:
 
 - 东3局 1本场
 
+<span class="v-mid">
 <span class="mahjong">
     <span class="mj">
         <span class="mj-red">🀋</span>🀀🀁🀂🀃🀄🀅🀆🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀫
     </span>
+</span>
+<span style="width: 10px"></span>
+
+[用户名]()
 </span>
 
 `);

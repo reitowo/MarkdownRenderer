@@ -101,8 +101,4 @@ npm run dev
 
 ```sh
 npm run build
-```
-
-### Extra
-
-子页面还包含了一些其他方便渲染的东西
+``` 
