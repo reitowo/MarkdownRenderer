@@ -461,7 +461,7 @@ table {
 table thead th {
   background-color: var(--table-header-bg-color);
   border-bottom: 2px solid var(--table-border-color);
-  font-weight: 600;
+  font-weight: bold;
 }
 
 /* 背景颜色交错 */
@@ -543,7 +543,7 @@ hr {
 .table-sm th, .table-sm td {
   padding: 0;
   font-size: 12px;
-  line-height: 1.3;
+  line-height: 1.6;
 }
 
 .table-sm table thead th {
