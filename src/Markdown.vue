@@ -167,7 +167,7 @@ if num == 1:
 
 <span class="mahjong">
     <span class="mj">
-        <span class="mj-red">🀋</span>🀀🀁🀂🀃🀄🀅🀆🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀫
+        <span class="mj-red">🀋</span>🀀🀁🀂🀃🀄🀅🀆🀇
     </span>
 </span>
 
@@ -176,7 +176,7 @@ if num == 1:
 <span class="v-mid">
 <span class="mahjong">
     <span class="mj">
-        <span class="mj-red">🀋</span>🀀🀁🀂🀃🀄🀅🀆🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀫
+        asdfghjkl
     </span>
 </span>
 <span style="width: 10px"></span>
@@ -184,6 +184,23 @@ if num == 1:
 [用户名]()
 </span>
 
+<span class="mahjong">
+    <span class="mj">
+        qwertyuio
+    </span>
+</span>
+
+<span class="mahjong">
+    <span class="mj">
+        zxcvbnm,.
+    </span>
+</span>
+
+<span class="mahjong">
+    <span class="mj">
+        1234567890
+    </span>
+</span>
 `);
 const ring = ref(false);
 
@@ -397,7 +414,7 @@ ul:has(input) > li > input {
 } 
 
 ol:has(input) {
-  list-style-type: none; 
+  list-style-type: none;
   padding-inline-start: 5px;
 }
 
@@ -507,15 +524,16 @@ hr {
   color: black;
   line-height: 23px;
   font-size: 24px;
-  background-color: #f4f4f4;
+  background-color: white;
   border-radius: 2px;
   padding-left: 1px;
   padding-right: 2px;
 }
 
 .mj {
+  display: inline-flex;
   position: relative;
-  top: -2.5px;
+  top: -3px;
 }
 
 .mj-red {
