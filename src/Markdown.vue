@@ -523,7 +523,7 @@ hr {
   font-family: "S.Mahjong", "Consolas", "思源黑体", serif;
   color: black;
   line-height: 24px;
-  font-size: 25px;
+  font-size: 24px;
   background-color: white;
   border-radius: 2px;
   padding-left: 1px;
@@ -533,7 +533,7 @@ hr {
 .mj {
   display: inline-flex;
   position: relative;
-  top: -3px;
+  top: -2.5px;
 }
 
 .mj-red {
