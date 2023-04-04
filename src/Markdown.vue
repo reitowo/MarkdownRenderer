@@ -541,9 +541,9 @@ hr {
 }
 
 .table-sm th, .table-sm td {
-  padding: 0;
+  padding: 2px;
   font-size: 12px;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 .table-sm table thead th {
