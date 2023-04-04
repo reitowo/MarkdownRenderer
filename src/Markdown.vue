@@ -522,8 +522,8 @@ hr {
   align-items: flex-end;
   font-family: "S.Mahjong", "Consolas", "思源黑体", serif;
   color: black;
-  line-height: 23px;
-  font-size: 24px;
+  line-height: 24px;
+  font-size: 25px;
   background-color: white;
   border-radius: 2px;
   padding-left: 1px;
