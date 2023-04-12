@@ -9,10 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "base64-js": "^1.5.1",
+    "fflate": "^0.7.4",
     "highlight.js": "^11.7.0",
     "insane": "^2.6.2",
     "marked": "^4.2.12",
     "marked-katex-extension": "^1.0.2",
+    "pako": "^2.1.0",
     "sass": "^1.59.3",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
